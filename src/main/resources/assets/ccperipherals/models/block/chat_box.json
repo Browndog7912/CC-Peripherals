@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "ccperipherals:block/chat_box_top",
+    "bottom": "ccperipherals:block/chat_box_top",
+    "side": "ccperipherals:block/chat_box_side"
+  }
+}

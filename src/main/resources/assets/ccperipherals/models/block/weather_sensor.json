@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "ccperipherals:block/weather_sensor_top",
+    "bottom": "ccperipherals:block/weather_sensor_top",
+    "side": "ccperipherals:block/weather_sensor_side"
+  }
+}
