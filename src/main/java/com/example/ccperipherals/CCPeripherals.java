@@ -4,8 +4,14 @@ import com.example.ccperipherals.block.ChatBoxBlock;
 import com.example.ccperipherals.block.ChatBoxBlockEntity;
 import com.example.ccperipherals.block.EnvironmentSensorBlock;
 import com.example.ccperipherals.block.EnvironmentSensorBlockEntity;
+import com.example.ccperipherals.block.ComputerButtonBlock;
+import com.example.ccperipherals.block.ComputerButtonBlockEntity;
+import com.example.ccperipherals.block.ComputerLightBlock;
+import com.example.ccperipherals.block.ComputerLightBlockEntity;
 import com.example.ccperipherals.block.NfcReaderBlock;
 import com.example.ccperipherals.block.NfcReaderBlockEntity;
+import com.example.ccperipherals.block.NfcScannerBlock;
+import com.example.ccperipherals.block.NfcScannerBlockEntity;
 import com.example.ccperipherals.block.PlayerSensorBlock;
 import com.example.ccperipherals.block.PlayerSensorBlockEntity;
 import com.example.ccperipherals.block.WeatherSensorBlock;
@@ -50,6 +56,9 @@ public class CCPeripherals implements ModInitializer {
     public static final Block ENVIRONMENT_SENSOR = new EnvironmentSensorBlock();
     public static final Block PLAYER_SENSOR = new PlayerSensorBlock();
     public static final Block NFC_READER = new NfcReaderBlock();
+    public static final Block NFC_SCANNER = new NfcScannerBlock();
+    public static final Block COMPUTER_LIGHT = new ComputerLightBlock();
+    public static final Block COMPUTER_BUTTON = new ComputerButtonBlock();
 
     /** One NFC card item per colour. */
     public static final Map<NfcColor, Item> NFC_CARDS = new EnumMap<>(NfcColor.class);
@@ -74,6 +83,9 @@ public class CCPeripherals implements ModInitializer {
     public static BlockEntityType<EnvironmentSensorBlockEntity> ENVIRONMENT_SENSOR_ENTITY;
     public static BlockEntityType<PlayerSensorBlockEntity> PLAYER_SENSOR_ENTITY;
     public static BlockEntityType<NfcReaderBlockEntity> NFC_READER_ENTITY;
+    public static BlockEntityType<NfcScannerBlockEntity> NFC_SCANNER_ENTITY;
+    public static BlockEntityType<ComputerLightBlockEntity> COMPUTER_LIGHT_ENTITY;
+    public static BlockEntityType<ComputerButtonBlockEntity> COMPUTER_BUTTON_ENTITY;
 
     public static final ItemGroup CREATIVE_TAB = FabricItemGroup.builder()
         .icon(() -> new ItemStack(CHAT_BOX))
@@ -84,6 +96,9 @@ public class CCPeripherals implements ModInitializer {
             entries.add(ENVIRONMENT_SENSOR);
             entries.add(PLAYER_SENSOR);
             entries.add(NFC_READER);
+            entries.add(NFC_SCANNER);
+            entries.add(COMPUTER_LIGHT);
+            entries.add(COMPUTER_BUTTON);
             NFC_CARDS.values().forEach(entries::add);
             entries.add(COMPUTER_CASING);
             entries.add(COMPUTER_METAL);
@@ -102,6 +117,9 @@ public class CCPeripherals implements ModInitializer {
         registerBlock("environment_sensor", ENVIRONMENT_SENSOR);
         registerBlock("player_sensor", PLAYER_SENSOR);
         registerBlock("nfc_reader", NFC_READER);
+        registerBlock("nfc_scanner", NFC_SCANNER);
+        registerBlock("computer_light", COMPUTER_LIGHT);
+        registerBlock("computer_button", COMPUTER_BUTTON);
         NFC_CARDS.forEach((color, item) -> Registry.register(Registries.ITEM, id("nfc_card_" + color.id()), item));
         registerBlock("computer_casing", COMPUTER_CASING);
         registerBlock("computer_metal", COMPUTER_METAL);
@@ -117,6 +135,12 @@ public class CCPeripherals implements ModInitializer {
             FabricBlockEntityTypeBuilder.create(PlayerSensorBlockEntity::new, PLAYER_SENSOR).build());
         NFC_READER_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE, id("nfc_reader"),
             FabricBlockEntityTypeBuilder.create(NfcReaderBlockEntity::new, NFC_READER).build());
+        NFC_SCANNER_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE, id("nfc_scanner"),
+            FabricBlockEntityTypeBuilder.create(NfcScannerBlockEntity::new, NFC_SCANNER).build());
+        COMPUTER_LIGHT_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE, id("computer_light"),
+            FabricBlockEntityTypeBuilder.create(ComputerLightBlockEntity::new, COMPUTER_LIGHT).build());
+        COMPUTER_BUTTON_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE, id("computer_button"),
+            FabricBlockEntityTypeBuilder.create(ComputerButtonBlockEntity::new, COMPUTER_BUTTON).build());
 
         // Creative tab
         Registry.register(Registries.ITEM_GROUP, id("main"), CREATIVE_TAB);
@@ -127,6 +151,9 @@ public class CCPeripherals implements ModInitializer {
         PeripheralLookup.get().registerForBlockEntity((be, side) -> be.getPeripheral(), ENVIRONMENT_SENSOR_ENTITY);
         PeripheralLookup.get().registerForBlockEntity((be, side) -> be.getPeripheral(), PLAYER_SENSOR_ENTITY);
         PeripheralLookup.get().registerForBlockEntity((be, side) -> be.getPeripheral(), NFC_READER_ENTITY);
+        PeripheralLookup.get().registerForBlockEntity((be, side) -> be.getPeripheral(), NFC_SCANNER_ENTITY);
+        PeripheralLookup.get().registerForBlockEntity((be, side) -> be.getPeripheral(), COMPUTER_LIGHT_ENTITY);
+        PeripheralLookup.get().registerForBlockEntity((be, side) -> be.getPeripheral(), COMPUTER_BUTTON_ENTITY);
 
         // Player Sensor join/leave events go to every sensor that has a computer attached.
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) ->
