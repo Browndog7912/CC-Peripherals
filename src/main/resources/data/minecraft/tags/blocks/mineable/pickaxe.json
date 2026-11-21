@@ -9,7 +9,6 @@
     "ccperipherals:computer_metal",
     "ccperipherals:nfc_reader",
     "ccperipherals:computer_button",
-    "ccperipherals:nfc_scanner",
-    "ccperipherals:redstone_port"
+    "ccperipherals:nfc_scanner"
   ]
 }
