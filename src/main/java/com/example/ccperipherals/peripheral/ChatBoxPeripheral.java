@@ -1,6 +1,5 @@
 package com.example.ccperipherals.peripheral;
 
-import com.example.ccperipherals.block.ChatBoxBlockEntity;
 import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.lua.LuaFunction;
 import dan200.computercraft.api.lua.MethodResult;
@@ -31,11 +30,11 @@ public class ChatBoxPeripheral implements IPeripheral {
     private static final int MAX_PREFIX_LENGTH = 32;
     private static final String DEFAULT_PREFIX = "ChatBox";
 
-    private final ChatBoxBlockEntity blockEntity;
+    private final Locator locator;
     private long lastSentTick = Long.MIN_VALUE;
 
-    public ChatBoxPeripheral(ChatBoxBlockEntity blockEntity) {
-        this.blockEntity = blockEntity;
+    public ChatBoxPeripheral(Locator locator) {
+        this.locator = locator;
     }
 
     @Override
@@ -45,7 +44,7 @@ public class ChatBoxPeripheral implements IPeripheral {
 
     @Override
     public boolean equals(@Nullable IPeripheral other) {
-        return other instanceof ChatBoxPeripheral peripheral && peripheral.blockEntity == blockEntity;
+        return other instanceof ChatBoxPeripheral peripheral && peripheral.locator.owner() == locator.owner();
     }
 
     /**
@@ -100,7 +99,7 @@ public class ChatBoxPeripheral implements IPeripheral {
     }
 
     private ServerWorld serverWorld() throws LuaException {
-        if (blockEntity.getWorld() instanceof ServerWorld world) return world;
+        if (locator.world() instanceof ServerWorld world) return world;
         throw new LuaException("Chat box is not in a loaded world");
     }
 

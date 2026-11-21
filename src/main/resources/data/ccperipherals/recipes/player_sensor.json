@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": ["SSS", "SOS", "SRS"],
+  "key": {
+    "S": { "item": "minecraft:stone" },
+    "O": { "item": "minecraft:observer" },
+    "R": { "item": "minecraft:redstone" }
+  },
+  "result": { "item": "ccperipherals:player_sensor" }
+}

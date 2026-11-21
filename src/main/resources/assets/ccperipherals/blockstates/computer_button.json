@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "pressed=false": {
+      "model": "ccperipherals:block/computer_button"
+    },
+    "pressed=true": {
+      "model": "ccperipherals:block/computer_button_pressed"
+    }
+  }
+}

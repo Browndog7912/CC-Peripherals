@@ -1,6 +1,5 @@
 package com.example.ccperipherals.peripheral;
 
-import com.example.ccperipherals.block.WeatherSensorBlockEntity;
 import dan200.computercraft.api.lua.LuaException;
 import dan200.computercraft.api.lua.LuaFunction;
 import dan200.computercraft.api.peripheral.IPeripheral;
@@ -18,10 +17,10 @@ import org.jetbrains.annotations.Nullable;
  * </pre>
  */
 public class WeatherSensorPeripheral implements IPeripheral {
-    private final WeatherSensorBlockEntity blockEntity;
+    private final Locator locator;
 
-    public WeatherSensorPeripheral(WeatherSensorBlockEntity blockEntity) {
-        this.blockEntity = blockEntity;
+    public WeatherSensorPeripheral(Locator locator) {
+        this.locator = locator;
     }
 
     @Override
@@ -31,11 +30,11 @@ public class WeatherSensorPeripheral implements IPeripheral {
 
     @Override
     public boolean equals(@Nullable IPeripheral other) {
-        return other instanceof WeatherSensorPeripheral peripheral && peripheral.blockEntity == blockEntity;
+        return other instanceof WeatherSensorPeripheral peripheral && peripheral.locator.owner() == locator.owner();
     }
 
     private World world() throws LuaException {
-        World world = blockEntity.getWorld();
+        World world = locator.world();
         if (world == null) throw new LuaException("Weather sensor is not in a loaded world");
         return world;
     }
@@ -73,7 +72,7 @@ public class WeatherSensorPeripheral implements IPeripheral {
      */
     @LuaFunction(mainThread = true)
     public final boolean isRainingHere() throws LuaException {
-        return world().hasRain(blockEntity.getPos().up());
+        return world().hasRain(locator.pos().up());
     }
 
     /** @return How strongly it is raining, from 0.0 (none) to 1.0 (full). Fades in and out. */

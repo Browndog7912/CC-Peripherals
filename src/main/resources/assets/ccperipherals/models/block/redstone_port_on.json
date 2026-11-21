@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "ccperipherals:block/redstone_port_on"
+  }
+}

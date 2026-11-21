@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "ccperipherals:block/redstone_port"
+    },
+    "powered=true": {
+      "model": "ccperipherals:block/redstone_port_on"
+    }
+  }
+}

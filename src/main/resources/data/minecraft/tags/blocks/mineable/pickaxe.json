@@ -1,1 +1,14 @@
-{ "replace": false, "values": ["ccperipherals:chat_box", "ccperipherals:weather_sensor"] }
+{
+  "replace": false,
+  "values": [
+    "ccperipherals:chat_box",
+    "ccperipherals:weather_sensor",
+    "ccperipherals:environment_sensor",
+    "ccperipherals:player_sensor",
+    "ccperipherals:computer_casing",
+    "ccperipherals:computer_metal",
+    "ccperipherals:nfc_reader",
+    "ccperipherals:computer_button",
+    "ccperipherals:nfc_scanner"
+  ]
+}

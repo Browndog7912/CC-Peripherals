@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "has_card=false": {
+      "model": "ccperipherals:block/nfc_reader"
+    },
+    "has_card=true": {
+      "model": "ccperipherals:block/nfc_reader_loaded"
+    }
+  }
+}

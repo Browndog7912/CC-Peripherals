@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "scanned=false": {
+      "model": "ccperipherals:block/nfc_scanner"
+    },
+    "scanned=true": {
+      "model": "ccperipherals:block/nfc_scanner_scanned"
+    }
+  }
+}

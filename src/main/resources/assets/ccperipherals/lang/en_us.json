@@ -1,5 +1,18 @@
 {
   "itemGroup.ccperipherals.main": "CC Peripherals",
   "block.ccperipherals.chat_box": "Chat Box",
-  "block.ccperipherals.weather_sensor": "Weather Sensor"
+  "block.ccperipherals.weather_sensor": "Weather Sensor",
+  "block.ccperipherals.environment_sensor": "Environment Sensor",
+  "upgrade.ccperipherals.chat_box.adjective": "Chat Box",
+  "upgrade.ccperipherals.weather_sensor.adjective": "Weather",
+  "block.ccperipherals.player_sensor": "Player Sensor",
+  "block.ccperipherals.computer_casing": "Computer Casing",
+  "block.ccperipherals.computer_metal": "Computer Metal",
+  "block.ccperipherals.nfc_reader": "NFC Reader",
+  "item.ccperipherals.nfc_card_red": "Red NFC Card",
+  "item.ccperipherals.nfc_card_green": "Green NFC Card",
+  "item.ccperipherals.nfc_card_yellow": "Yellow NFC Card",
+  "item.ccperipherals.nfc_card_purple": "Purple NFC Card",
+  "item.ccperipherals.nfc_card_blue": "Blue NFC Card",
+  "item.ccperipherals.nfc_card_white": "White NFC Card"
 }
