@@ -1,8 +1,9 @@
 {
-  "parent": "minecraft:block/cube_bottom_top",
+  "parent": "minecraft:block/orientable_with_bottom",
   "textures": {
+    "front": "ccperipherals:block/nfc_scanner_front",
+    "side": "ccperipherals:block/nfc_scanner_side",
     "top": "ccperipherals:block/nfc_scanner_top",
-    "bottom": "ccperipherals:block/nfc_scanner_top",
-    "side": "ccperipherals:block/nfc_scanner_side"
+    "bottom": "ccperipherals:block/nfc_scanner_top"
   }
 }

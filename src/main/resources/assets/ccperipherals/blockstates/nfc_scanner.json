@@ -1,10 +1,34 @@
 {
   "variants": {
-    "scanned=false": {
+    "facing=north,scanned=false": {
       "model": "ccperipherals:block/nfc_scanner"
     },
-    "scanned=true": {
+    "facing=north,scanned=true": {
       "model": "ccperipherals:block/nfc_scanner_scanned"
+    },
+    "facing=east,scanned=false": {
+      "model": "ccperipherals:block/nfc_scanner",
+      "y": 90
+    },
+    "facing=east,scanned=true": {
+      "model": "ccperipherals:block/nfc_scanner_scanned",
+      "y": 90
+    },
+    "facing=south,scanned=false": {
+      "model": "ccperipherals:block/nfc_scanner",
+      "y": 180
+    },
+    "facing=south,scanned=true": {
+      "model": "ccperipherals:block/nfc_scanner_scanned",
+      "y": 180
+    },
+    "facing=west,scanned=false": {
+      "model": "ccperipherals:block/nfc_scanner",
+      "y": 270
+    },
+    "facing=west,scanned=true": {
+      "model": "ccperipherals:block/nfc_scanner_scanned",
+      "y": 270
     }
   }
 }

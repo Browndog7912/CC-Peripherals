@@ -14,5 +14,12 @@
   "item.ccperipherals.nfc_card_yellow": "Yellow NFC Card",
   "item.ccperipherals.nfc_card_purple": "Purple NFC Card",
   "item.ccperipherals.nfc_card_blue": "Blue NFC Card",
-  "item.ccperipherals.nfc_card_white": "White NFC Card"
+  "item.ccperipherals.nfc_card_white": "White NFC Card",
+  "block.ccperipherals.computer_light": "Computer Light",
+  "block.ccperipherals.computer_button": "Computer Button",
+  "block.ccperipherals.nfc_scanner": "NFC Scanner",
+  "block.ccperipherals.redstone_port": "Redstone Port",
+  "block.ccperipherals.air_conditioner": "Air Conditioner",
+  "subtitles.ccperipherals.air_conditioner.fan": "Air Conditioner hums",
+  "block.ccperipherals.thermostat": "Thermostat"
 }

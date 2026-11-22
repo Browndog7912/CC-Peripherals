@@ -1,8 +1,9 @@
 {
-  "parent": "minecraft:block/cube_bottom_top",
+  "parent": "minecraft:block/orientable_with_bottom",
   "textures": {
+    "front": "ccperipherals:block/computer_button_front",
+    "side": "ccperipherals:block/computer_button_side",
     "top": "ccperipherals:block/computer_button_top",
-    "bottom": "ccperipherals:block/computer_button_side",
-    "side": "ccperipherals:block/computer_button_side"
+    "bottom": "ccperipherals:block/computer_button_top"
   }
 }
