@@ -9,6 +9,10 @@ import net.minecraft.block.MapColor;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.Properties;
+import net.minecraft.util.math.Direction;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
@@ -30,6 +34,7 @@ import org.jetbrains.annotations.Nullable;
  * Anything that is not an NFC card is ignored.
  */
 public class NfcScannerBlock extends Block implements BlockEntityProvider {
+    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static final BooleanProperty SCANNED = BooleanProperty.of("scanned");
     private static final int FLASH_TICKS = 10;
 
@@ -38,12 +43,18 @@ public class NfcScannerBlock extends Block implements BlockEntityProvider {
             .mapColor(MapColor.STONE_GRAY)
             .strength(2.0f, 6.0f)
             .sounds(BlockSoundGroup.STONE));
-        setDefaultState(getStateManager().getDefaultState().with(SCANNED, false));
+        setDefaultState(getStateManager().getDefaultState().with(FACING, Direction.NORTH).with(SCANNED, false));
     }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(SCANNED);
+        builder.add(FACING, SCANNED);
+    }
+
+    /** The front (the textured face) points back at the player who placed the block. */
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext context) {
+        return getDefaultState().with(FACING, context.getHorizontalPlayerFacing().getOpposite());
     }
 
     @Override

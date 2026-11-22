@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "front": "ccperipherals:block/thermostat_front",
+    "side": "ccperipherals:block/thermostat_side",
+    "top": "ccperipherals:block/thermostat_top",
+    "bottom": "ccperipherals:block/thermostat_top"
+  }
+}

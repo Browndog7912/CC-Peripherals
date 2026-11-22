@@ -1,0 +1,12 @@
+{
+  "air_conditioner.fan": {
+    "category": "block",
+    "subtitle": "subtitles.ccperipherals.air_conditioner.fan",
+    "sounds": [
+      {
+        "name": "ccperipherals:block/air_conditioner_fan",
+        "stream": false
+      }
+    ]
+  }
+}

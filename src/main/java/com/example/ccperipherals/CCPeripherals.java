@@ -1,5 +1,7 @@
 package com.example.ccperipherals;
 
+import com.example.ccperipherals.block.AirConditionerBlock;
+import com.example.ccperipherals.block.AirConditionerBlockEntity;
 import com.example.ccperipherals.block.ChatBoxBlock;
 import com.example.ccperipherals.block.ChatBoxBlockEntity;
 import com.example.ccperipherals.block.EnvironmentSensorBlock;
@@ -16,6 +18,8 @@ import com.example.ccperipherals.block.PlayerSensorBlock;
 import com.example.ccperipherals.block.RedstonePortBlock;
 import com.example.ccperipherals.block.RedstonePortBlockEntity;
 import com.example.ccperipherals.block.PlayerSensorBlockEntity;
+import com.example.ccperipherals.block.ThermostatBlock;
+import com.example.ccperipherals.block.ThermostatBlockEntity;
 import com.example.ccperipherals.block.WeatherSensorBlock;
 import com.example.ccperipherals.block.WeatherSensorBlockEntity;
 import com.example.ccperipherals.nfc.NfcCardItem;
@@ -44,6 +48,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -62,6 +67,11 @@ public class CCPeripherals implements ModInitializer {
     public static final Block COMPUTER_LIGHT = new ComputerLightBlock();
     public static final Block COMPUTER_BUTTON = new ComputerButtonBlock();
     public static final Block REDSTONE_PORT = new RedstonePortBlock();
+    public static final Block AIR_CONDITIONER = new AirConditionerBlock();
+    public static final Block THERMOSTAT = new ThermostatBlock();
+
+    /** The air conditioner's fan hum (see assets/ccperipherals/sounds.json). */
+    public static final SoundEvent AIR_CONDITIONER_FAN = SoundEvent.of(id("air_conditioner.fan"));
 
     /** One NFC card item per colour. */
     public static final Map<NfcColor, Item> NFC_CARDS = new EnumMap<>(NfcColor.class);
@@ -90,6 +100,8 @@ public class CCPeripherals implements ModInitializer {
     public static BlockEntityType<ComputerLightBlockEntity> COMPUTER_LIGHT_ENTITY;
     public static BlockEntityType<ComputerButtonBlockEntity> COMPUTER_BUTTON_ENTITY;
     public static BlockEntityType<RedstonePortBlockEntity> REDSTONE_PORT_ENTITY;
+    public static BlockEntityType<AirConditionerBlockEntity> AIR_CONDITIONER_ENTITY;
+    public static BlockEntityType<ThermostatBlockEntity> THERMOSTAT_ENTITY;
 
     public static final ItemGroup CREATIVE_TAB = FabricItemGroup.builder()
         .icon(() -> new ItemStack(CHAT_BOX))
@@ -104,6 +116,8 @@ public class CCPeripherals implements ModInitializer {
             entries.add(COMPUTER_LIGHT);
             entries.add(COMPUTER_BUTTON);
             entries.add(REDSTONE_PORT);
+            entries.add(AIR_CONDITIONER);
+            entries.add(THERMOSTAT);
             NFC_CARDS.values().forEach(entries::add);
             entries.add(COMPUTER_CASING);
             entries.add(COMPUTER_METAL);
@@ -126,6 +140,9 @@ public class CCPeripherals implements ModInitializer {
         registerBlock("computer_light", COMPUTER_LIGHT);
         registerBlock("computer_button", COMPUTER_BUTTON);
         registerBlock("redstone_port", REDSTONE_PORT);
+        registerBlock("air_conditioner", AIR_CONDITIONER);
+        registerBlock("thermostat", THERMOSTAT);
+        Registry.register(Registries.SOUND_EVENT, AIR_CONDITIONER_FAN.getId(), AIR_CONDITIONER_FAN);
         NFC_CARDS.forEach((color, item) -> Registry.register(Registries.ITEM, id("nfc_card_" + color.id()), item));
         registerBlock("computer_casing", COMPUTER_CASING);
         registerBlock("computer_metal", COMPUTER_METAL);
@@ -149,6 +166,10 @@ public class CCPeripherals implements ModInitializer {
             FabricBlockEntityTypeBuilder.create(ComputerButtonBlockEntity::new, COMPUTER_BUTTON).build());
         REDSTONE_PORT_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE, id("redstone_port"),
             FabricBlockEntityTypeBuilder.create(RedstonePortBlockEntity::new, REDSTONE_PORT).build());
+        AIR_CONDITIONER_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE, id("air_conditioner"),
+            FabricBlockEntityTypeBuilder.create(AirConditionerBlockEntity::new, AIR_CONDITIONER).build());
+        THERMOSTAT_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE, id("thermostat"),
+            FabricBlockEntityTypeBuilder.create(ThermostatBlockEntity::new, THERMOSTAT).build());
 
         // Creative tab
         Registry.register(Registries.ITEM_GROUP, id("main"), CREATIVE_TAB);
@@ -163,6 +184,8 @@ public class CCPeripherals implements ModInitializer {
         PeripheralLookup.get().registerForBlockEntity((be, side) -> be.getPeripheral(), COMPUTER_LIGHT_ENTITY);
         PeripheralLookup.get().registerForBlockEntity((be, side) -> be.getPeripheral(), COMPUTER_BUTTON_ENTITY);
         PeripheralLookup.get().registerForBlockEntity((be, side) -> be.getPeripheral(), REDSTONE_PORT_ENTITY);
+        PeripheralLookup.get().registerForBlockEntity((be, side) -> be.getPeripheral(), AIR_CONDITIONER_ENTITY);
+        PeripheralLookup.get().registerForBlockEntity((be, side) -> be.getPeripheral(), THERMOSTAT_ENTITY);
 
         // Player Sensor join/leave events go to every sensor that has a computer attached.
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) ->

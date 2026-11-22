@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "front": "ccperipherals:block/air_conditioner_front_off",
+    "side": "ccperipherals:block/air_conditioner_side",
+    "top": "ccperipherals:block/air_conditioner_top",
+    "bottom": "ccperipherals:block/air_conditioner_top"
+  }
+}
