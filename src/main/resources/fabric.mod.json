@@ -5,9 +5,9 @@
   "name": "CC Peripherals",
   "description": "Adds a Chat Box and a Weather Sensor peripheral for CC: Tweaked computers.",
   "authors": [
-    "You"
+    "Browndog7912"
   ],
-  "license": "MIT",
+  "license": "GNU GENERAL PUBLIC LICENSE",
   "environment": "*",
   "entrypoints": {
     "main": [
